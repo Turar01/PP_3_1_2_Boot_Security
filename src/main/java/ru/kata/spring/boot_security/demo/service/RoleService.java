@@ -8,6 +8,7 @@ import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class RoleService {
 
@@ -18,12 +19,17 @@ public class RoleService {
 
         this.roleRepository = roleRepository;
     }
+    @Transactional
+    public Role findRoleByName(String roleName) {
+        return roleRepository.findByName(roleName);
+    }
 
+    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
 
-    @Transactional//todo: проговаривали..
+    @Transactional
     public void addRole(Role role) {
         roleRepository.save(role);
     }
