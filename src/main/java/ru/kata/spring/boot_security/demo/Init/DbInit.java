@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class DbInit {
+public class DbInit {//todo: класс нужно убрать (совсем убрать). Наполнение и перераскатка таблиц - должна осуществляться написанным скриптом .sql.
+                    //todo Скрипт должен отрабатывать при запуске приложения, должны быть для этого изменены properties в части касающейся
     private final UserService userService;
     private final RoleService roleService;
 

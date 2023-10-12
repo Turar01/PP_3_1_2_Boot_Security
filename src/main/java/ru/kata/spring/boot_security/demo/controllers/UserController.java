@@ -20,11 +20,10 @@ import java.util.Set;
 
 @Controller
 public class UserController {
+
     private final UserValidator userValidator;
     private final UserService userService;
     private final RoleRepository roleRepository;
-
-
 
     @Autowired
     public UserController(UserValidator userValidator, UserService userService, RoleRepository roleRepository) {
@@ -49,10 +48,10 @@ public class UserController {
             return "registration";
         }
 
-        if (selectedRoles != null && !selectedRoles.isEmpty()) {
+        if (selectedRoles != null && !selectedRoles.isEmpty()) {//todo: ..очень громозко, нужно вынести в отдельный метод или оптимизировать метод контроллера
             Set<Role> userRoles = new HashSet<>();
             for (String roleName : selectedRoles) {
-                Role role = roleRepository.findByName(roleName);
+                Role role = roleRepository.findByName(roleName);//todo: ..из controller-ов мы работаем с service-ами. здесь, видим обращение напрямую в repository
                 if (role != null) {
                     userRoles.add(role);
                 }
@@ -66,7 +65,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String getUserProfile(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//todo: нужно подтянуть иным образом, например, через аннотацию
         String username = authentication.getName();
         model.addAttribute("user", userService.loadUserByUsername(username));
         return "user";

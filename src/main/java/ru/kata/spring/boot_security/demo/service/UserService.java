@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
 
     public List<User> allUsers() {
         return userRepository.findAll();
-    }
+    }//todo: syntax
     @Transactional
     public void register(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(Long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
+        Optional<User> userFromDb = userRepository.findById(userId);//todo: Optional<> хорошо, что используется. Должен применяться на слое repository на методах, где это необходимо
         return userFromDb.orElse(new User());
     }
     @Transactional
@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
         }
     }
     @Transactional
-    public void updateUser(Long id, User user) {
+    public void updateUser(Long id, User user) {//todo: id используется?..
         User existingUser = userRepository.findById(user.getId()).orElse(null);
         if (existingUser != null) {
             existingUser.setUsername(user.getUsername());

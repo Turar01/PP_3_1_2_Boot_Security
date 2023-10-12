@@ -18,7 +18,7 @@ public class UserValidator  implements Validator {
     }
 
     @Override
-    public boolean supports(Class<?> clazz) {
+    public boolean supports(Class<?> clazz) {//todo: WELL) хорошее решение - валидатор отдельным классом и общим методом validate()
         return User.class.equals(clazz);
     }
 

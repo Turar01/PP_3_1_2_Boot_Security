@@ -10,7 +10,9 @@ import java.util.List;
 
 @Service
 public class RoleService {
+
     private final RoleRepository roleRepository;
+
     @Autowired
     public RoleService(RoleRepository roleRepository) {
 
@@ -20,7 +22,8 @@ public class RoleService {
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
-    @Transactional
+
+    @Transactional//todo: проговаривали..
     public void addRole(Role role) {
         roleRepository.save(role);
     }
