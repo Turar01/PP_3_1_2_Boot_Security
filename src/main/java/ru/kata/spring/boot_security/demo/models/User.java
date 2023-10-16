@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +22,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(name = "age")
-    private int age;
+    private long age;
 
     @Column(name="password")
     @NotNull
@@ -37,7 +36,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, int age, String password, Set<Role> roles) {
+    public User(String username, long age, String password, Set<Role> roles) {
         this.username = username;
         this.age = age;
         this.password = password;
@@ -58,10 +57,10 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
