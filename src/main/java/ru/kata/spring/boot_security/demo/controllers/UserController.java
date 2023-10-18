@@ -22,20 +22,18 @@ public class UserController {
 
     private final UserValidator userValidator;
     private final UserService userService;
-    private final RoleRepository roleRepository;
     private final RoleService roleService;
 
     @Autowired
-    public UserController(UserValidator userValidator, UserService userService, RoleRepository roleRepository, RoleService roleService) {
+    public UserController(UserValidator userValidator, UserService userService, RoleService roleService) {
         this.userValidator = userValidator;
         this.userService = userService;
-        this.roleRepository = roleRepository;
         this.roleService = roleService;
     }
 
     @GetMapping("/registration")
     public String registrationPage(Model model) {
-        List<Role> allRoles = roleRepository.findAll();
+        List<Role> allRoles = roleService.getAllRoles();
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("user", new User());
         return "registration";

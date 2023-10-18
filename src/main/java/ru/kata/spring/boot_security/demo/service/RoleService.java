@@ -8,7 +8,7 @@ import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import java.util.List;
 
-@Transactional
+@Transactional(readOnly = true)
 @Service
 public class RoleService {
 
@@ -24,7 +24,6 @@ public class RoleService {
         return roleRepository.findByName(roleName);
     }
 
-    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
